@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h2>Add new Books</h2>
+<form action="book" method="post" enctype="multipart/form-data">
+code
+	<input type="text" name="bcode" id="code" size="50"><br>
+title
+	<input type="text" name="title" id="title" size="50"><br>
+Author
+	<input type="text" name="author" id="author" size="50"><br>
+image
+	<input type="file" name="photo" id="photo" size="50"><br>
+	
+	<input type="submit" name="submit" value="Add Book">
+</form>
+
+</body>
+</html>

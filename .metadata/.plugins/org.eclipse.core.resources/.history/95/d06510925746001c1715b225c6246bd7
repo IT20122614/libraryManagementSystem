@@ -1,0 +1,10 @@
+package com.customer;
+
+import java.io.InputStream;
+
+public class AddNewBookUtil {
+	public static int addNewBook(String code, String title, String author, InputStream file) {
+		
+	}
+
+}

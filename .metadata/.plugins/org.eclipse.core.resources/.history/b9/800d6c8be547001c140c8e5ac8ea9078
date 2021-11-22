@@ -1,0 +1,73 @@
+package com.customer;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+
+
+@WebServlet("/AddBookController")
+@MultipartConfig(maxFileSize = 16177215)
+public class AddBookController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String code = request.getParameter("bcode");
+		String title = request.getParameter("title");
+		String author = request.getParameter("author");
+		InputStream inputStream = null;
+		System.out.println(code);
+		System.out.println(title);
+		  
+
+  
+        
+        
+        Part filePart = request.getPart("photo");
+  
+        if (filePart != null) {
+  
+            // Prints out some information
+            // for debugging
+        	System.out.println(filePart.getName());
+            System.out.println(filePart.getSize());
+            System.out.println(filePart.getContentType());
+  
+            // Obtains input stream of the upload file
+            inputStream = filePart.getInputStream();
+        }
+        
+        int success = AddNewBookUtil.addNewBook(code, title, author, inputStream);
+        if(success > 0) {
+        	response.setContentType("text/html");
+        	PrintWriter pw=response.getWriter();
+        	pw.println("<script type=\"text/javascript\">");
+        	pw.println("alert('Book added');");
+        	pw.println("</script>");
+        	request.getRequestDispatcher("addbook.jsp").include(request, response);
+        	
+        }else {
+        	response.setContentType("text/html");
+        	PrintWriter pw=response.getWriter();
+        	pw.println("<script type=\"text/javascript\">");
+        	pw.println("alert('Book added FAILED');");
+        	pw.println("</script>");
+        	request.getRequestDispatcher("addbook.jsp").include(request, response);
+        }
+        
+        
+	}
+
+}

@@ -1,0 +1,75 @@
+package com.customer;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+
+
+public class ReturnBookUtil {
+
+	public static List<Borrow> getBorrowedBook(String user1) {
+		
+		String url = "jdbc:mysql://localhost:3306/library";
+		String user = "root";
+		String pawd = "1234";
+		ArrayList<Borrow> list = new ArrayList<>();
+		String status = "borrowed";
+		Borrow us = new Borrow();
+		ResultSet res;
+		
+		
+		//Validate
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection(url, user, pawd);
+			
+			
+			
+			String SQL = "select b.title, b.code, b.file from book b, borrow w where b.code = w.code and b.code = (select code from borrow where username = '"+user1+"' and status = '"+status+"')";
+			Statement stmt = con.createStatement();
+			stmt.executeQuery(SQL);
+			res = stmt.getResultSet();
+			
+			
+			while(res.next()) {
+				String title = res.getString(1);
+				String code = res.getString(2);
+				Blob blob = res.getBlob(3);	
+				InputStream inputStream = blob.getBinaryStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                int bytesRead = -1;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);                  
+                }
+                 
+                byte[] imageBytes = outputStream.toByteArray();
+                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                inputStream.close();
+                outputStream.close();
+                
+                us.setTitle(title);
+                us.setCode(code);
+                us.setBase64Image(base64Image);
+                
+                list.add(us);
+			}
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
+
+}

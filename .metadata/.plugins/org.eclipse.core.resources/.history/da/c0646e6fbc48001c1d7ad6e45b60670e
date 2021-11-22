@@ -1,0 +1,13 @@
+package com.customer;
+
+import java.util.Date;
+
+public class BorrowUtil {
+	public static boolean borrowBook(String code, String date, String username) {
+		
+		return true;
+	}
+
+	
+
+}

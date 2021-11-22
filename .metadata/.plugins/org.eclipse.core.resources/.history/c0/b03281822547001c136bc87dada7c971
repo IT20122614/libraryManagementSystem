@@ -1,0 +1,48 @@
+package com.customer;
+
+public class Book {
+	
+	private String code;
+	private String title;
+	private String author;
+	private byte[] photo;
+	
+	
+	public Book() {
+		super();
+	}
+	public Book(String code, String title, String author, byte[] photo) {
+		super();
+		this.code = code;
+		this.title = title;
+		this.author = author;
+		this.photo = photo;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public byte[] getPhoto() {
+		return photo;
+	}
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	
+	
+
+}

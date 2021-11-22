@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<c:forEach var = "cus" items="${list}">
+	
+	<h1>${cus.code}</h1>
+	<h1>${cus.title}</h1>
+	<img src="data:image/png;base64,${cus.base64Image}" width="400" height="400" alt="vcdscv">
+	
+	
+	</c:forEach>
+
+</body>
+</html>

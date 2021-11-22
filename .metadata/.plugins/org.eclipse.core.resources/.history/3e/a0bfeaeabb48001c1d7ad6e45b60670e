@@ -1,0 +1,16 @@
+package com.customer;
+
+import java.util.Date;
+
+public class BorrowUtil {
+	public static boolean borrowBook(String code, Date date, String username) {
+		
+		return true;
+	}
+
+	public static boolean borrowBook1(String code, Date date, String user1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

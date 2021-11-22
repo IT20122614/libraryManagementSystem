@@ -1,0 +1,35 @@
+package com.customer;
+
+public class Borrow {
+	private String title;
+	private String code;
+	private byte[] photo;
+	public Borrow(String title, String code, byte[] photo) {
+		super();
+		this.title = title;
+		this.code = code;
+		this.photo = photo;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public byte[] getPhoto() {
+		return photo;
+	}
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	
+	
+	
+
+}

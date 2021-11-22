@@ -1,0 +1,43 @@
+package com.customer;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+public class DisplayBookUtil {
+	
+	public static ArrayList displayBook() {
+		String url = "jdbc:mysql://localhost:3306/library";
+		String user = "root";
+		String pawd = "1234";
+		ArrayList<Book> list = new ArrayList<>();
+		ResultSet res;
+		Book book = new Book();
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection(url, user, pawd);
+			
+
+			String SQL = "SELECT * FROM book";
+			Statement stmt = con.createStatement();
+			stmt.executeQuery(SQL);
+			res = stmt.getResultSet();
+			
+			while(res.next()) {
+				list.add(null)
+			}
+
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		
+	}
+
+}
